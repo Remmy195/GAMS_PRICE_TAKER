@@ -1,0 +1,171 @@
+
+--- Job SDP Example.gms Start 06/22/23 02:40:29 43.1.0 203303bb WEX-WEI x86 64bit/MS Windows
+--- Applying:
+    C:\GAMS\43\gmsprmNT.txt
+--- GAMS Parameters defined
+    Input "C:\Users\Remi\OneDrive - UCB-O365\Documents\lecture notes\MSc\Thesis\GAMS\SDP Example.gms"
+    PageSize 0
+    ScrDir "C:\Users\Remi\OneDrive - UCB-O365\Documents\lecture notes\MSc\Thesis\GAMS\225c\"
+    SysDir C:\GAMS\43\
+    LogOption 3
+    ErrMsg 1
+    ErrorLog 99
+    IDE 1
+    LstTitleLeftAligned 1
+Licensee: GAMS Community License for Remi Akinwonmi      G230220|0002AO-GEN
+          University of Colorado at Boulder, Dept. of Mechanical EngiCL5252
+          C:\GAMS\43\gamslice.txt
+          Remi Akinwonmi, reak4480@colorado.edu                            
+          Community license for demonstration and instructional purposes only
+Processor information: 1 socket(s), 4 core(s), and 4 thread(s) available
+GAMS 43.1.0   Copyright (C) 1987-2023 GAMS Development. All rights reserved
+--- Starting compilation
+SDDP only tested for selected LP solvers
+--- SDP Example.gms(75) 4 Mb
+--- Initialize embedded library embconnectcclib64.dll
+--- Execute embedded library embconnectcclib64.dll
+  File "<string>", line 105, in <module>
+  File "C:\GAMS\43\GMSPython\lib\site-packages\gams\connect\connectdatabase.py", line 119, in exec_task
+    task_instance.open()
+  File "C:\GAMS\43\GMSPython\lib\site-packages\gams\connect\agents\pandasexcelreader.py", line 55, in open
+    self._excel_file = pd.ExcelFile(self._file, **self._inst.get('excelFileArguments', {}))
+  File "C:\GAMS\43\GMSPython\lib\site-packages\pandas\io\excel\_base.py", line 1652, in __init__
+    ext = inspect_excel_format(
+  File "C:\GAMS\43\GMSPython\lib\site-packages\pandas\io\excel\_base.py", line 1525, in inspect_excel_format
+    with get_handle(
+  File "C:\GAMS\43\GMSPython\lib\site-packages\pandas\io\common.py", line 865, in get_handle
+    handle = open(handle, ioargs.mode)
+Exception from Connect: <class 'FileNotFoundError'>: [Errno 2] No such file or directory: 'C:\\Users\\Remi\\OneDrive - UCB-O365\\Documents\\lecture notes\\MSc\\Thesis\\GAMS\\water.xlsx'
+*** Error executing embedded code section:
+*** Check log above
+--- SDP Example.gms(75) 4 Mb 1 Error
+*** Error 865 in C:\Users\Remi\OneDrive - UCB-O365\Documents\lecture notes\MSc\Thesis\GAMS\SDP Example.gms
+    Problem in embedded code section
+--- SDP Example.gms(97) 5 Mb 2 Errors
+*** Error 141 in C:\Users\Remi\OneDrive - UCB-O365\Documents\lecture notes\MSc\Thesis\GAMS\SDP Example.gms
+    Symbol declared but no values have been assigned. Check for missing
+       data definition, assignment, data loading or implicit assignment
+       via a solve statement. Suppress with $onImplicitAssign.
+       A wild shot: You may have spurious commas in the explanatory
+       text of a declaration. Check symbol reference list.
+--- SDP Example.gms(98) 5 Mb 3 Errors
+*** Error 141 in C:\Users\Remi\OneDrive - UCB-O365\Documents\lecture notes\MSc\Thesis\GAMS\SDP Example.gms
+    Symbol declared but no values have been assigned. Check for missing
+       data definition, assignment, data loading or implicit assignment
+       via a solve statement. Suppress with $onImplicitAssign.
+       A wild shot: You may have spurious commas in the explanatory
+       text of a declaration. Check symbol reference list.
+--- SDP Example.gms(99) 5 Mb 5 Errors
+*** Error 141 in C:\Users\Remi\OneDrive - UCB-O365\Documents\lecture notes\MSc\Thesis\GAMS\SDP Example.gms
+    Symbol declared but no values have been assigned. Check for missing
+       data definition, assignment, data loading or implicit assignment
+       via a solve statement. Suppress with $onImplicitAssign.
+       A wild shot: You may have spurious commas in the explanatory
+       text of a declaration. Check symbol reference list.
+*** Error 116 in C:\Users\Remi\OneDrive - UCB-O365\Documents\lecture notes\MSc\Thesis\GAMS\SDP Example.gms
+    Label is unknown
+--- SDP Example.gms(205) 5 Mb
+--- $echo File C:\Users\Remi\OneDrive - UCB-O365\Documents\lecture notes\MSc\Thesis\GAMS\storeSol.gms
+--- SDP Example.gms(287) 5 Mb 6 Errors
+*** Error 141 in C:\Users\Remi\OneDrive - UCB-O365\Documents\lecture notes\MSc\Thesis\GAMS\SDP Example.gms
+    Symbol declared but no values have been assigned. Check for missing
+       data definition, assignment, data loading or implicit assignment
+       via a solve statement. Suppress with $onImplicitAssign.
+       A wild shot: You may have spurious commas in the explanatory
+       text of a declaration. Check symbol reference list.
+--- SDP Example.gms(289) 5 Mb 7 Errors
+*** Error 257 in C:\Users\Remi\OneDrive - UCB-O365\Documents\lecture notes\MSc\Thesis\GAMS\SDP Example.gms
+    Solve statement not checked because of previous errors
+--- SDP Example.gms(291) 5 Mb 8 Errors
+*** Error 141 in C:\Users\Remi\OneDrive - UCB-O365\Documents\lecture notes\MSc\Thesis\GAMS\SDP Example.gms
+    Symbol declared but no values have been assigned. Check for missing
+       data definition, assignment, data loading or implicit assignment
+       via a solve statement. Suppress with $onImplicitAssign.
+       A wild shot: You may have spurious commas in the explanatory
+       text of a declaration. Check symbol reference list.
+--- SDP Example.gms(293) 5 Mb 9 Errors
+*** Error 141 in C:\Users\Remi\OneDrive - UCB-O365\Documents\lecture notes\MSc\Thesis\GAMS\SDP Example.gms
+    Symbol declared but no values have been assigned. Check for missing
+       data definition, assignment, data loading or implicit assignment
+       via a solve statement. Suppress with $onImplicitAssign.
+       A wild shot: You may have spurious commas in the explanatory
+       text of a declaration. Check symbol reference list.
+--- SDP Example.gms(294) 5 Mb 11 Errors
+*** Error 141 in C:\Users\Remi\OneDrive - UCB-O365\Documents\lecture notes\MSc\Thesis\GAMS\SDP Example.gms
+    Symbol declared but no values have been assigned. Check for missing
+       data definition, assignment, data loading or implicit assignment
+       via a solve statement. Suppress with $onImplicitAssign.
+       A wild shot: You may have spurious commas in the explanatory
+       text of a declaration. Check symbol reference list.
+*** Error 141 in C:\Users\Remi\OneDrive - UCB-O365\Documents\lecture notes\MSc\Thesis\GAMS\SDP Example.gms
+    Symbol declared but no values have been assigned. Check for missing
+       data definition, assignment, data loading or implicit assignment
+       via a solve statement. Suppress with $onImplicitAssign.
+       A wild shot: You may have spurious commas in the explanatory
+       text of a declaration. Check symbol reference list.
+--- SDP Example.gms(295) 5 Mb 14 Errors
+*** Error 141 in C:\Users\Remi\OneDrive - UCB-O365\Documents\lecture notes\MSc\Thesis\GAMS\SDP Example.gms
+    Symbol declared but no values have been assigned. Check for missing
+       data definition, assignment, data loading or implicit assignment
+       via a solve statement. Suppress with $onImplicitAssign.
+       A wild shot: You may have spurious commas in the explanatory
+       text of a declaration. Check symbol reference list.
+*** Error 141 in C:\Users\Remi\OneDrive - UCB-O365\Documents\lecture notes\MSc\Thesis\GAMS\SDP Example.gms
+    Symbol declared but no values have been assigned. Check for missing
+       data definition, assignment, data loading or implicit assignment
+       via a solve statement. Suppress with $onImplicitAssign.
+       A wild shot: You may have spurious commas in the explanatory
+       text of a declaration. Check symbol reference list.
+*** Error 141 in C:\Users\Remi\OneDrive - UCB-O365\Documents\lecture notes\MSc\Thesis\GAMS\SDP Example.gms
+    Symbol declared but no values have been assigned. Check for missing
+       data definition, assignment, data loading or implicit assignment
+       via a solve statement. Suppress with $onImplicitAssign.
+       A wild shot: You may have spurious commas in the explanatory
+       text of a declaration. Check symbol reference list.
+--- SDP Example.gms(297) 5 Mb 15 Errors
+*** Error 141 in C:\Users\Remi\OneDrive - UCB-O365\Documents\lecture notes\MSc\Thesis\GAMS\SDP Example.gms
+    Symbol declared but no values have been assigned. Check for missing
+       data definition, assignment, data loading or implicit assignment
+       via a solve statement. Suppress with $onImplicitAssign.
+       A wild shot: You may have spurious commas in the explanatory
+       text of a declaration. Check symbol reference list.
+--- SDP Example.gms(307) 5 Mb 16 Errors
+*** Error 257 in C:\Users\Remi\OneDrive - UCB-O365\Documents\lecture notes\MSc\Thesis\GAMS\SDP Example.gms
+    Solve statement not checked because of previous errors
+--- SDP Example.gms(309) 5 Mb
+--- . storeSol.gms(1) 5 Mb
+--- SDP Example.gms(310) 5 Mb 17 Errors
+*** Error 141 in C:\Users\Remi\OneDrive - UCB-O365\Documents\lecture notes\MSc\Thesis\GAMS\SDP Example.gms
+    Symbol declared but no values have been assigned. Check for missing
+       data definition, assignment, data loading or implicit assignment
+       via a solve statement. Suppress with $onImplicitAssign.
+       A wild shot: You may have spurious commas in the explanatory
+       text of a declaration. Check symbol reference list.
+--- SDP Example.gms(311) 5 Mb 18 Errors
+*** Error 141 in C:\Users\Remi\OneDrive - UCB-O365\Documents\lecture notes\MSc\Thesis\GAMS\SDP Example.gms
+    Symbol declared but no values have been assigned. Check for missing
+       data definition, assignment, data loading or implicit assignment
+       via a solve statement. Suppress with $onImplicitAssign.
+       A wild shot: You may have spurious commas in the explanatory
+       text of a declaration. Check symbol reference list.
+--- SDP Example.gms(321) 5 Mb 19 Errors
+*** Error 257 in C:\Users\Remi\OneDrive - UCB-O365\Documents\lecture notes\MSc\Thesis\GAMS\SDP Example.gms
+    Solve statement not checked because of previous errors
+--- SDP Example.gms(323) 5 Mb
+--- . storeSol.gms(1) 5 Mb
+--- SDP Example.gms(325) 5 Mb 21 Errors
+*** Error 141 in C:\Users\Remi\OneDrive - UCB-O365\Documents\lecture notes\MSc\Thesis\GAMS\SDP Example.gms
+    Symbol declared but no values have been assigned. Check for missing
+       data definition, assignment, data loading or implicit assignment
+       via a solve statement. Suppress with $onImplicitAssign.
+       A wild shot: You may have spurious commas in the explanatory
+       text of a declaration. Check symbol reference list.
+*** Error 141 in C:\Users\Remi\OneDrive - UCB-O365\Documents\lecture notes\MSc\Thesis\GAMS\SDP Example.gms
+    Symbol declared but no values have been assigned. Check for missing
+       data definition, assignment, data loading or implicit assignment
+       via a solve statement. Suppress with $onImplicitAssign.
+       A wild shot: You may have spurious commas in the explanatory
+       text of a declaration. Check symbol reference list.
+--- SDP Example.gms(341) 5 Mb 21 Errors
+*** Status: Compilation error(s)
+--- Job SDP Example.gms Stop 06/22/23 02:40:30 elapsed 0:00:01.565

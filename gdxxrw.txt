@@ -1,0 +1,6 @@
+par=demand    rng=t_Demand!a2          Rdim=1
+par=exchange  rng=t_Flow!a2            Rdim=1
+par=wCapacity rng=w_Capacity!a2 Rdim=1 Cdim=1
+par=wPrices   rng=w_Prices!a2   Rdim=1 Cdim=1
+par=wInflow   rng=w_Inflow!a2          Rdim=1
+par=sw_Inflow rng=sw_Inflow!a2  Rdim=1 Cdim=1

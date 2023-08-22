@@ -1,0 +1,10 @@
+       if (itime("i2"),
+            E_stored.fx('24') = E_stored.l('24'); 
+       elseif (itime("i3")),
+            E_stored.fx('48') = E_stored.l('48');
+       elseif (itime("i4")),
+            E_stored.fx('72') = E_stored.l('72');
+       elseif (itime("i5")),
+            E_stored.fx('96') = E_stored.l('96');
+
+

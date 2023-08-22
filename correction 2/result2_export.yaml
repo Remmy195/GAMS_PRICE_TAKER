@@ -1,0 +1,87 @@
+- GDXReader:
+    file: C:\Users\Remi\OneDrive - UCB-O365\Documents\lecture notes\MSc\Thesis\GAMS\correction 2\result2.gdx
+    symbols: 
+      - name: E_stored
+      - name: E_pur
+      - name: E_sold
+      - name: E_charge
+      - name: E_dischar
+      - name: z_charge
+      - name: z_dischar
+      - name: rev
+      - name: cost
+      - name: Profit
+- Projection:
+    name: E_stored(0)
+    newName: E_stored_proj_(0)
+    asParameter: true
+- Projection:
+    name: E_pur(0)
+    newName: E_pur_proj_(0)
+    asParameter: true
+- Projection:
+    name: E_sold(0)
+    newName: E_sold_proj_(0)
+    asParameter: true
+- Projection:
+    name: E_charge(0)
+    newName: E_charge_proj_(0)
+    asParameter: true
+- Projection:
+    name: E_dischar(0)
+    newName: E_dischar_proj_(0)
+    asParameter: true
+- Projection:
+    name: z_charge(0)
+    newName: z_charge_proj_(0)
+    asParameter: true
+- Projection:
+    name: z_dischar(0)
+    newName: z_dischar_proj_(0)
+    asParameter: true
+- Projection:
+    name: rev(0)
+    newName: rev_proj_(0)
+    asParameter: true
+- Projection:
+    name: cost(0)
+    newName: cost_proj_(0)
+    asParameter: true
+- Projection:
+    name: Profit
+    newName: Profit_proj_
+    asParameter: true
+- PandasExcelWriter:
+    file: C:\Users\Remi\OneDrive - UCB-O365\Documents\lecture notes\MSc\Thesis\GAMS\correction 2\result2_export.xlsx
+    excelWriterArguments: { engine: null, mode: w, if_sheet_exists: null}
+    symbols:
+      - name: E_stored_proj_
+        range: E_stored!A1
+        rowDimension: 1
+      - name: E_pur_proj_
+        range: E_pur!A1
+        rowDimension: 1
+      - name: E_sold_proj_
+        range: E_sold!A1
+        rowDimension: 1
+      - name: E_charge_proj_
+        range: E_charge!A1
+        rowDimension: 1
+      - name: E_dischar_proj_
+        range: E_dischar!A1
+        rowDimension: 1
+      - name: z_charge_proj_
+        range: z_charge!A1
+        rowDimension: 1
+      - name: z_dischar_proj_
+        range: z_dischar!A1
+        rowDimension: 1
+      - name: rev_proj_
+        range: rev!A1
+        rowDimension: 1
+      - name: cost_proj_
+        range: cost!A1
+        rowDimension: 1
+      - name: Profit_proj_
+        range: Profit!A1
+        rowDimension: 0

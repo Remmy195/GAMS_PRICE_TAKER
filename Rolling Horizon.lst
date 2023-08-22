@@ -1,0 +1,138 @@
+GAMS 43.1.0  203303bb Apr 27, 2023          WEX-WEI x86 64bit/MS Windows - 06/16/23 02:09:01 Page 1
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+C o m p i l a t i o n
+
+
+   2  Sets
+   3  time /1*120/
+   4  itime /i1*i5/
+   5  ittime(itime, time)/
+   6   i1.(1*48)
+   7   i2.(25*72)
+   8   i3.(49*96)
+   9   i4.(73*120)
+  10   i5.(97*120)/
+  11  otime(time) optimization time used in the model;
+  12   
+  13  alias (time,i)
+  14   
+  15  parameter interval "number of additional intervals to look past the current operating period", h "number of hours of storage", p "power capacity of storage device", E_min, E_max, PF, cost_op, max_charge, max_disch, eff_c, eff_dc, rate_loss, ini_energy;
+  16  interval = 24;
+  17  h = 10;
+  18  p = 100;
+  19  E_min = 0;
+  20  E_max = h*p;
+  21  PF = 3;
+  22  eff_c = 0.9;
+  23  eff_dc = 0.9;
+  24  cost_op = 0;
+  25  rate_loss = 0;
+  26  ini_energy = 200;
+  27   
+  28   
+  29  table ts(time,*)
+ 156  ;
+ 157   
+ 158  Parameter price(time);
+ 159  price(time)=ts(time,'price');
+ 160   
+ 161  display price;
+ 162   
+ 163   
+ 164  *===============================================================================
+ 165  * Parameters for post-processing results
+ 166  *===============================================================================
+ 167  Parameters
+ 168  T_profit(itime)
+ 169  Net_Revenue;
+ 170   
+ 171   
+ 172  variable E_stored(time);
+ 173  variable E_pur(time);
+ 174  variable E_sold(time);
+ 175  Variable E_dischar(time);
+ 176  Variable E_charge(time);
+ 177   
+ 178  variable E_aval(time);
+ 179  variable E_loss(time);
+ 180  variable rev(time);
+ 181  variable cost(time);
+ 182  variable Cost_pur(time);
+ 183  variable Profit;
+ 184  Binary Variable z_charge(time);
+ 185  Binary Variable z_dischar(time);
+ 186  E_charge.lo(time) = 0;
+ 187  E_dischar.lo(time) = 0;
+ 188   
+ 189   
+ 190   
+ 191   
+ 192   
+ 193  equation e1(time), e1a(time), e2(time), e3(time), e4(time), e4a(time), e5(time), e6(time), e7(time), e9(time), e10(time), e11(time), e13(time), e14;
+ 194   
+ 195  e1(time)$otime(time)..    E_min =l= E_aval(time);
+ 196  e1a(time)$otime(time)..   E_aval(time) =l= E_max;
+ 197   
+ 198  e2(time)$otime(time)..   E_charge(time) =l= z_charge(time)*p;
+ 199   
+ 200  e3(time)$otime(time)..   E_dischar(time) =l= z_dischar(time)*p;
+ 201  e4(time)$otime(time)..    z_charge(time) + z_dischar(time) =l= 1;
+ 202  e4a(time)$otime(time)..   E_charge(time) =e= E_pur(time)*eff_c;
+ 203  e5(time)$otime(time)..    E_dischar(time) =e= E_sold(time)/eff_dc;
+ 204  e6(time)$otime(time)..    E_aval(time) =e= E_stored(time)-E_loss(time);
+ 205  e7(time)$otime(time)..    E_stored(time) =e= ini_energy$(ord(time)=1)+E_stored[time-1]$(ord(time)>1)+E_charge(time)-E_dischar(time);
+ 206  e9(time)$otime(time)..    E_loss(time) =e= E_stored(time)*rate_loss;
+ 207  e10(time)$otime(time)..   Rev(time) =e= price(time)*E_sold(time);
+ 208  e11(time)$otime(time)..   cost(time) =e= Cost_pur(time)+(cost_op*E_aval(time));
+ 209  e13(time)$otime(time)..   Cost_pur(time) =e= E_pur(time)*price(time);
+ 210  e14..   Profit =e= sum(otime(time), rev(time)-cost(time));
+ 211   
+ 212  model energy_storage /all/;
+ 213   
+ 214  loop(itime,
+ 215       otime(time) = ittime(itime,time);
+ 216   
+ 217       solve energy_storage maximizing Profit using mip;
+ 218      E_stored.fx(otime)$(ord(otime)<25) = E_stored.l(otime);
+ 219   
+ 220   
+ 221      T_profit(itime) = sum(otime$(ord(otime)<25), rev.l(otime)-cost.l(otime));
+ 222      display T_profit;
+ 223      );
+ 224  Net_Revenue = sum(itime, T_profit(itime));
+ 225  display Net_Revenue;
+ 226  *this creates the iis option file for debugging infeasibility*
+ 230   
+ 231  *this tells the solver to look for the option file to load*
+ 232  energy_storage.optfile=1;
+ 233   
+
+**** LIST OF STRAY NAMES - CHECK DECLARATIONS FOR SPURIOUS COMMAS
+**** STRAY NAME max_charge OF TYPE PARAM
+**** STRAY NAME max_disch OF TYPE PARAM
+GAMS 43.1.0  203303bb Apr 27, 2023          WEX-WEI x86 64bit/MS Windows - 06/16/23 02:09:01 Page 2
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Include File Summary
+
+
+   SEQ   GLOBAL TYPE      PARENT   LOCAL  FILENAME
+
+     1        1 INPUT          0       0  C:\Users\Remi\OneDrive - UCB-O365\Documents\lecture notes\MSc\Thesis\GAMS\Rolling Horizon.gms
+     2       32 INCLUDE        1      32  .C:\Users\Remi\OneDrive - UCB-O365\Documents\lecture notes\MSc\Thesis\GAMS\Data_120.csv
+
+
+COMPILATION TIME     =        0.000 SECONDS      3 MB  43.1.0 203303bb WEX-WEI
+
+
+USER: GAMS Community License for Remi Akinwonmi      G230220|0002AO-GEN
+      University of Colorado at Boulder, Dept. of Mechanical EngiCL5252
+      License for teaching and research at degree granting institutions
+
+
+**** FILE SUMMARY
+
+Input      C:\Users\Remi\OneDrive - UCB-O365\Documents\lecture notes\MSc\Thesis\GAMS\Rolling Horizon.gms
+Output     C:\Users\Remi\OneDrive - UCB-O365\Documents\lecture notes\MSc\Thesis\GAMS\Rolling Horizon.lst
+XSave      C:\Users\Remi\OneDrive - UCB-O365\Documents\lecture notes\MSc\Thesis\GAMS\Rolling Horizon.g0?
+
+**** WARNING - COMPILER OPTIONS ARE NON DEFAULT     ONEMPTY

@@ -1,0 +1,214 @@
+--- Job MODEL.gms Start 06/16/23 03:09:05 42.2.0 ef14ea53 LEX-LEG x86 64bit/Linux
+--- Applying:
+    /opt/gams/42.2.0/gmsprmun.txt
+    /opt/gams/42.2.0/gamsconfig.yaml
+--- GAMS Parameters defined
+    Restart /var/lib/condor/execute/dir_52964/gamsexec/restart.g00
+    Input /var/lib/condor/execute/dir_52964/gamsexec/MODEL.gms
+    Output /var/lib/condor/execute/dir_52964/gamsexec/solve.lst
+    PageWidth 79
+    PageSize 0
+    ScrDir /var/lib/condor/execute/dir_52964/neos-52968/
+    SysDir /opt/gams/42.2.0/
+    CurDir /var/lib/condor/execute/dir_52964/gamsexec/
+    LogOption 4
+    LogFile /var/lib/condor/execute/dir_52964/gamsexec/solve.log
+    AppendOut 1
+    AppendLog 0
+    Suppress 0
+    CErr 10
+    ErrMsg 1
+    ErrorLog 99
+    LimRow 0
+    LimCol 0
+    IDE 1
+    GDX /var/lib/condor/execute/dir_52964/gamsexec/out.gdx
+    ExecMode 3
+    gdxCompress 1
+    Solver coincbc
+    LstTitleLeftAligned 1
+Licensee: NEOS Server License prod-exec-1.neos-server.orgS221207/0001AB-GEN
+          mac@44:a8:42:25:df:6c                                     DCE1890
+          /opt/gams/42.2.0/gamslice.txt
+          Evaluation license: Not for commercial or production use
+Processor information: 2 socket(s), 32 core(s), and 64 thread(s) available
+GAMS 42.2.0   Copyright (C) 1987-2023 GAMS Development. All rights reserved
+--- Starting continued compilation
+--- Workfile was generated under GAMS version WEX420-420
+--- MODEL.gms(4) 3 Mb[FIL:"/var/lib/condor/execute/dir_52964/gamsexec/MODEL.gms",4,0]
+--- Starting execution: elapsed 0:00:00.003[LST:10]
+--- MODEL.gms(214) 4 Mb[FIL:"/var/lib/condor/execute/dir_52964/gamsexec/MODEL.gms",214,0]
+--- Generating MIP model energy_storage[LST:34]
+--- MODEL.gms(217) 4 Mb[FIL:"/var/lib/condor/execute/dir_52964/gamsexec/MODEL.gms",217,0]
+--- LOOPS itime = i1
+---   625 rows  577 columns  1,300 non-zeroes
+---   96 discrete-columns
+--- Range statistics (absolute non-zero finite values)
+--- RHS       [min, max] : [ 1.000E+00, 1.000E+03] - Zero values observed as well
+--- Bound     [min, max] : [ 1.000E+00, 1.000E+00] - Zero values observed as well
+--- Matrix    [min, max] : [ 1.100E-01, 1.000E+02]
+--- Executing COINCBC (Solvelink=2): elapsed 0:00:00.007[LST:49]
+
+COIN-OR CBC      42.2.0 ef14ea53 Feb 16, 2023          LEG x86 64bit/Linux    
+
+COIN-OR Branch and Cut (CBC Library 2.10.8)
+written by J. Forrest
+
+Calling CBC main solution routine...
+Integer solution of -3450.6 found by feasibility pump after 0 iterations and 0 nodes (0.01 seconds)
+Search completed - best objective -3450.600000000001, took 0 iterations and 0 nodes (0.01 seconds)
+Maximum depth 0, 0 variables fixed on reduced cost
+
+Solved to optimality (within gap tolerances optca and optcr).
+MIP solution:    3.450600e+03   (0 nodes, 0.010978 seconds)
+
+Best possible:   3.450600e+03
+Absolute gap:    0.000000e+00   (absolute tolerance optca: 0)
+Relative gap:    0.000000e+00   (relative tolerance optcr: 0.0001)
+
+Resolve with fixed discrete variables.
+0  Obj 3450.6 Primal inf 3700 (4)
+Optimal - objective value 3450.6
+--- Reading solution for model energy_storage[LST:63]
+--- Executing after solve: elapsed 0:00:00.055[LST:1434]
+--- MODEL.gms(214) 4 Mb[FIL:"/var/lib/condor/execute/dir_52964/gamsexec/MODEL.gms",214,0]
+--- Generating MIP model energy_storage[LST:1443]
+--- MODEL.gms(217) 4 Mb[FIL:"/var/lib/condor/execute/dir_52964/gamsexec/MODEL.gms",217,0]
+--- LOOPS itime = i2
+---   625 rows  578 columns  1,299 non-zeroes
+---   96 discrete-columns
+--- Range statistics (absolute non-zero finite values)
+--- RHS       [min, max] : [ 1.000E+00, 1.000E+03] - Zero values observed as well
+--- Bound     [min, max] : [ 1.000E+00, 3.000E+02] - Zero values observed as well
+--- Matrix    [min, max] : [ 1.300E-01, 1.000E+02]
+--- Executing COINCBC (Solvelink=2): elapsed 0:00:00.058[LST:1458]
+
+COIN-OR CBC      42.2.0 ef14ea53 Feb 16, 2023          LEG x86 64bit/Linux    
+
+COIN-OR Branch and Cut (CBC Library 2.10.8)
+written by J. Forrest
+
+Calling CBC main solution routine...
+Integer solution of -2675.7 found by feasibility pump after 0 iterations and 0 nodes (0.01 seconds)
+Search completed - best objective -2675.7, took 0 iterations and 0 nodes (0.01 seconds)
+Maximum depth 0, 0 variables fixed on reduced cost
+
+Solved to optimality (within gap tolerances optca and optcr).
+MIP solution:    2.675700e+03   (0 nodes, 0.012663 seconds)
+
+Best possible:   2.675700e+03
+Absolute gap:   -4.547474e-13   (absolute tolerance optca: 0)
+Relative gap:   -1.699545e-16   (relative tolerance optcr: 0.0001)
+
+Resolve with fixed discrete variables.
+0  Obj 2675.7 Primal inf 1400 (2)
+Optimal - objective value 2675.7
+--- Reading solution for model energy_storage[LST:1472]
+--- Executing after solve: elapsed 0:00:00.103[LST:2844]
+--- MODEL.gms(214) 4 Mb[FIL:"/var/lib/condor/execute/dir_52964/gamsexec/MODEL.gms",214,0]
+--- Generating MIP model energy_storage[LST:2853]
+--- MODEL.gms(217) 4 Mb[FIL:"/var/lib/condor/execute/dir_52964/gamsexec/MODEL.gms",217,0]
+--- LOOPS itime = i3
+---   625 rows  578 columns  1,321 non-zeroes
+---   96 discrete-columns
+--- Range statistics (absolute non-zero finite values)
+--- RHS       [min, max] : [ 1.000E+00, 1.000E+03] - Zero values observed as well
+--- Bound     [min, max] : [ 1.000E+00, 3.000E+02] - Zero values observed as well
+--- Matrix    [min, max] : [ 2.500E-01, 1.000E+02]
+--- Executing COINCBC (Solvelink=2): elapsed 0:00:00.105[LST:2868]
+
+COIN-OR CBC      42.2.0 ef14ea53 Feb 16, 2023          LEG x86 64bit/Linux    
+
+COIN-OR Branch and Cut (CBC Library 2.10.8)
+written by J. Forrest
+
+Calling CBC main solution routine...
+Integer solution of -14831.022 found by feasibility pump after 0 iterations and 0 nodes (0.01 seconds)
+Search completed - best objective -14831.02222222222, took 0 iterations and 0 nodes (0.01 seconds)
+Maximum depth 0, 0 variables fixed on reduced cost
+
+Solved to optimality (within gap tolerances optca and optcr).
+MIP solution:    1.483102e+04   (0 nodes, 0.016181 seconds)
+
+Best possible:   1.483102e+04
+Absolute gap:   -5.456968e-12   (absolute tolerance optca: 0)
+Relative gap:   -3.679428e-16   (relative tolerance optcr: 0.0001)
+
+Resolve with fixed discrete variables.
+0  Obj 14542.133 Primal inf 2400 (3) Dual inf 0.28888879 (1)
+2  Obj 14831.022
+Optimal - objective value 14831.022
+--- Reading solution for model energy_storage[LST:2882]
+--- Executing after solve: elapsed 0:00:00.155[LST:4255]
+--- MODEL.gms(214) 4 Mb[FIL:"/var/lib/condor/execute/dir_52964/gamsexec/MODEL.gms",214,0]
+--- Generating MIP model energy_storage[LST:4264]
+--- MODEL.gms(217) 4 Mb[FIL:"/var/lib/condor/execute/dir_52964/gamsexec/MODEL.gms",217,0]
+--- LOOPS itime = i4
+---   625 rows  578 columns  1,329 non-zeroes
+---   96 discrete-columns
+--- Range statistics (absolute non-zero finite values)
+--- RHS       [min, max] : [ 1.000E+00, 1.000E+03] - Zero values observed as well
+--- Bound     [min, max] : [ 1.000E+00, 4.000E+02] - Zero values observed as well
+--- Matrix    [min, max] : [ 2.500E-01, 1.000E+02]
+--- Executing COINCBC (Solvelink=2): elapsed 0:00:00.157[LST:4279]
+
+COIN-OR CBC      42.2.0 ef14ea53 Feb 16, 2023          LEG x86 64bit/Linux    
+
+COIN-OR Branch and Cut (CBC Library 2.10.8)
+written by J. Forrest
+
+Calling CBC main solution routine...
+Integer solution of -18819.644 found by feasibility pump after 0 iterations and 0 nodes (0.01 seconds)
+Search completed - best objective -18819.64444444444, took 0 iterations and 0 nodes (0.01 seconds)
+Maximum depth 0, 0 variables fixed on reduced cost
+
+Solved to optimality (within gap tolerances optca and optcr).
+MIP solution:    1.881964e+04   (0 nodes, 0.018705 seconds)
+
+Best possible:   1.881964e+04
+Absolute gap:    7.275958e-12   (absolute tolerance optca: 0)
+Relative gap:    3.866150e-16   (relative tolerance optcr: 0.0001)
+
+Resolve with fixed discrete variables.
+0  Obj 18819.644 Primal inf 5400 (6)
+Optimal - objective value 18819.644
+--- Reading solution for model energy_storage[LST:4293]
+--- Executing after solve: elapsed 0:00:00.208[LST:5665]
+--- MODEL.gms(214) 4 Mb[FIL:"/var/lib/condor/execute/dir_52964/gamsexec/MODEL.gms",214,0]
+--- Generating MIP model energy_storage[LST:5674]
+--- MODEL.gms(217) 4 Mb[FIL:"/var/lib/condor/execute/dir_52964/gamsexec/MODEL.gms",217,0]
+--- LOOPS itime = i5
+---   313 rows  290 columns  657 non-zeroes
+---   48 discrete-columns
+--- Range statistics (absolute non-zero finite values)
+--- RHS       [min, max] : [ 1.000E+00, 1.000E+03] - Zero values observed as well
+--- Bound     [min, max] : [ 1.000E+00, 3.000E+02] - Zero values observed as well
+--- Matrix    [min, max] : [ 3.000E-01, 1.000E+02]
+--- Executing COINCBC (Solvelink=2): elapsed 0:00:00.210[LST:5689]
+
+COIN-OR CBC      42.2.0 ef14ea53 Feb 16, 2023          LEG x86 64bit/Linux    
+
+COIN-OR Branch and Cut (CBC Library 2.10.8)
+written by J. Forrest
+
+Calling CBC main solution routine...
+Integer solution of -5392.8 found by feasibility pump after 0 iterations and 0 nodes (0.00 seconds)
+Search completed - best objective -5392.8, took 0 iterations and 0 nodes (0.00 seconds)
+Maximum depth 0, 0 variables fixed on reduced cost
+
+Solved to optimality (within gap tolerances optca and optcr).
+MIP solution:    5.392800e+03   (0 nodes, 0.006137 seconds)
+
+Best possible:   5.392800e+03
+Absolute gap:   -9.094947e-13   (absolute tolerance optca: 0)
+Relative gap:   -1.686498e-16   (relative tolerance optcr: 0.0001)
+
+Resolve with fixed discrete variables.
+0  Obj 5392.8 Primal inf 4400 (5)
+Optimal - objective value 5392.8
+--- Reading solution for model energy_storage[LST:5703]
+--- Executing after solve: elapsed 0:00:00.248[LST:6475]
+--- MODEL.gms(232) 4 Mb[FIL:"/var/lib/condor/execute/dir_52964/gamsexec/MODEL.gms",232,0]
+--- GDX File /var/lib/condor/execute/dir_52964/gamsexec/out.gdx[FIL:"/var/lib/condor/execute/dir_52964/gamsexec/out.gdx",0,0]
+*** Status: Normal completion[LST:6501]
+--- Job MODEL.gms Stop 06/16/23 03:09:05 elapsed 0:00:00.250

@@ -1,0 +1,102 @@
+--- Job MODEL.gms Start 06/16/23 03:09:25 42.2.0 ef14ea53 LEX-LEG x86 64bit/Linux
+--- Applying:
+    /opt/gams/42.2.0/gmsprmun.txt
+    /opt/gams/42.2.0/gamsconfig.yaml
+--- GAMS Parameters defined
+    Restart /var/lib/condor/execute/dir_52997/gamsexec/restart.g00
+    Input /var/lib/condor/execute/dir_52997/gamsexec/MODEL.gms
+    Output /var/lib/condor/execute/dir_52997/gamsexec/solve.lst
+    PageWidth 79
+    PageSize 0
+    ScrDir /var/lib/condor/execute/dir_52997/neos-53001/
+    SysDir /opt/gams/42.2.0/
+    CurDir /var/lib/condor/execute/dir_52997/gamsexec/
+    LogOption 4
+    LogFile /var/lib/condor/execute/dir_52997/gamsexec/solve.log
+    AppendOut 1
+    AppendLog 0
+    Suppress 0
+    CErr 10
+    ErrMsg 1
+    ErrorLog 99
+    LimRow 0
+    LimCol 0
+    IDE 1
+    GDX /var/lib/condor/execute/dir_52997/gamsexec/out.gdx
+    ExecMode 3
+    gdxCompress 1
+    Solver coincbc
+    LstTitleLeftAligned 1
+Licensee: NEOS Server License prod-exec-1.neos-server.orgS221207/0001AB-GEN
+          mac@44:a8:42:25:df:6c                                     DCE1890
+          /opt/gams/42.2.0/gamslice.txt
+          Evaluation license: Not for commercial or production use
+Processor information: 2 socket(s), 32 core(s), and 64 thread(s) available
+GAMS 42.2.0   Copyright (C) 1987-2023 GAMS Development. All rights reserved
+--- Starting continued compilation
+--- Workfile was generated under GAMS version WEX420-420
+--- MODEL.gms(4) 3 Mb[FIL:"/var/lib/condor/execute/dir_52997/gamsexec/MODEL.gms",4,0]
+--- Starting execution: elapsed 0:00:00.004[LST:10]
+--- MODEL.gms(804) 4 Mb[FIL:"/var/lib/condor/execute/dir_52997/gamsexec/MODEL.gms",804,0]
+--- Generating MIP model energy_storage[LST:159]
+--- MODEL.gms(806) 6 Mb[FIL:"/var/lib/condor/execute/dir_52997/gamsexec/MODEL.gms",806,0]
+---   9,361 rows  8,641 columns  20,128 non-zeroes
+---   1,440 discrete-columns
+--- Range statistics (absolute non-zero finite values)
+--- RHS       [min, max] : [ 1.000E+00, 5.000E+03] - Zero values observed as well
+--- Bound     [min, max] : [ 1.000E+00, 1.000E+00] - Zero values observed as well
+--- Matrix    [min, max] : [ 1.000E-02, 5.000E+02]
+--- Executing COINCBC (Solvelink=2): elapsed 0:00:00.016[LST:171]
+
+COIN-OR CBC      42.2.0 ef14ea53 Feb 16, 2023          LEG x86 64bit/Linux    
+
+COIN-OR Branch and Cut (CBC Library 2.10.8)
+written by J. Forrest
+*** Error Cannot open parameter file "/var/lib/condor/execute/dir_52997/gamsexec/coincbc.opt"
+*** Error Error code = 2; No such file or directory
+
+Calling CBC main solution routine...
+Integer solution of -499615.4 found by feasibility pump after 0 iterations and 0 nodes (0.10 seconds)
+Search completed - best objective -499615.3999999996, took 0 iterations and 0 nodes (0.10 seconds)
+Maximum depth 0, 0 variables fixed on reduced cost
+
+Solved to optimality (within gap tolerances optca and optcr).
+MIP solution:    4.996154e+05   (0 nodes, 0.257004 seconds)
+
+Best possible:   4.996154e+05
+Absolute gap:    0.000000e+00   (absolute tolerance optca: 0)
+Relative gap:    0.000000e+00   (relative tolerance optcr: 0.0001)
+
+Resolve with fixed discrete variables.
+Perturbing problem by 0.001% of 22.5628 - largest nonzero change 2.5674649e-06 ( 0.0016828577%) - largest zero change 1.8364998e-06
+0  Obj 463538.57 Primal inf 20000 (6) Dual inf 16.576922 (6)
+Optimal - objective value 499615.4
+--- Reading solution for model energy_storage[LST:183]
+--- Executing after solve: elapsed 0:00:00.398[LST:18359]
+--- MODEL.gms(816) 6 Mb[FIL:"/var/lib/condor/execute/dir_52997/gamsexec/MODEL.gms",816,0]
+--- GDX File (execute_unload) /var/lib/condor/execute/dir_52997/gamsexec/result2.gdx[FIL:"/var/lib/condor/execute/dir_52997/gamsexec/result2.gdx",0,0]
+--- MODEL.gms(817) 6 Mb[FIL:"/var/lib/condor/execute/dir_52997/gamsexec/MODEL.gms",817,0]
+*** Error at line 817: No execute under in this execution mode[LST:19453]
+--- MODEL.gms(818) 6 Mb 1 Error[FIL:"/var/lib/condor/execute/dir_52997/gamsexec/MODEL.gms",818,0]
+*** Error at line 818: No execute under in this execution mode[LST:19454]
+--- MODEL.gms(819) 6 Mb 2 Errors[FIL:"/var/lib/condor/execute/dir_52997/gamsexec/MODEL.gms",819,0]
+*** Error at line 819: No execute under in this execution mode[LST:19455]
+--- MODEL.gms(820) 6 Mb 3 Errors[FIL:"/var/lib/condor/execute/dir_52997/gamsexec/MODEL.gms",820,0]
+*** Error at line 820: No execute under in this execution mode[LST:19456]
+--- MODEL.gms(821) 6 Mb 4 Errors[FIL:"/var/lib/condor/execute/dir_52997/gamsexec/MODEL.gms",821,0]
+*** Error at line 821: No execute under in this execution mode[LST:19457]
+--- MODEL.gms(822) 6 Mb 5 Errors[FIL:"/var/lib/condor/execute/dir_52997/gamsexec/MODEL.gms",822,0]
+*** Error at line 822: No execute under in this execution mode[LST:19458]
+--- MODEL.gms(823) 6 Mb 6 Errors[FIL:"/var/lib/condor/execute/dir_52997/gamsexec/MODEL.gms",823,0]
+*** Error at line 823: No execute under in this execution mode[LST:19459]
+--- MODEL.gms(824) 6 Mb 7 Errors[FIL:"/var/lib/condor/execute/dir_52997/gamsexec/MODEL.gms",824,0]
+*** Error at line 824: No execute under in this execution mode[LST:19460]
+--- MODEL.gms(825) 6 Mb 8 Errors[FIL:"/var/lib/condor/execute/dir_52997/gamsexec/MODEL.gms",825,0]
+*** Error at line 825: No execute under in this execution mode[LST:19461]
+--- MODEL.gms(826) 6 Mb 9 Errors[FIL:"/var/lib/condor/execute/dir_52997/gamsexec/MODEL.gms",826,0]
+*** Error at line 826: No execute under in this execution mode[LST:19462]
+--- MODEL.gms(826) 6 Mb 10 Errors[FIL:"/var/lib/condor/execute/dir_52997/gamsexec/MODEL.gms",826,0]
+--- GDX File /var/lib/condor/execute/dir_52997/gamsexec/out.gdx[FIL:"/var/lib/condor/execute/dir_52997/gamsexec/out.gdx",0,0]
+--- MODEL.gms(826) 6 Mb 10 Errors[FIL:"/var/lib/condor/execute/dir_52997/gamsexec/MODEL.gms",826,0]
+*** Status: Execution error(s)[LST:19480]
+--- Job MODEL.gms Stop 06/16/23 03:09:26 elapsed 0:00:00.409

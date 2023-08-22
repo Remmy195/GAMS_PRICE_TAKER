@@ -1,0 +1,164 @@
+B 3 C o m p i l a t i o n
+B 11 E x e c u t i o n
+I 11 price
+B 35 Range Statistics    SOLVE energy_storage Using MIP From line 217
+B 46 Model Statistics    SOLVE energy_storage Using MIP From line 217
+B 64 Solution Report     SOLVE energy_storage Using MIP From line 217
+F 96 e1
+F 149 e1a
+F 202 e2
+F 255 e3
+F 308 e4
+F 361 e4a
+F 414 e5
+F 467 e6
+F 520 e7
+F 573 e9
+F 626 e10
+F 679 e11
+F 732 e13
+F 787 e14
+G 789 E_stored
+G 842 E_pur
+G 895 E_sold
+G 948 E_dischar
+G 1001 E_charge
+G 1054 E_aval
+G 1107 E_loss
+G 1160 rev
+G 1213 cost
+G 1266 Cost_pur
+G 1321 Profit
+G 1323 z_charge
+G 1376 z_dischar
+B 1435 E x e c u t i o n
+I 1435 T_profit
+B 1444 Range Statistics    SOLVE energy_storage Using MIP From line 217
+B 1455 Model Statistics    SOLVE energy_storage Using MIP From line 217
+B 1473 Solution Report     SOLVE energy_storage Using MIP From line 217
+F 1505 e1
+F 1558 e1a
+F 1611 e2
+F 1664 e3
+F 1717 e4
+F 1770 e4a
+F 1823 e5
+F 1876 e6
+F 1929 e7
+F 1982 e9
+F 2035 e10
+F 2088 e11
+F 2141 e13
+F 2196 e14
+G 2198 E_stored
+G 2252 E_pur
+G 2305 E_sold
+G 2358 E_dischar
+G 2411 E_charge
+G 2464 E_aval
+G 2517 E_loss
+G 2570 rev
+G 2623 cost
+G 2676 Cost_pur
+G 2731 Profit
+G 2733 z_charge
+G 2786 z_dischar
+B 2845 E x e c u t i o n
+I 2845 T_profit
+B 2854 Range Statistics    SOLVE energy_storage Using MIP From line 217
+B 2865 Model Statistics    SOLVE energy_storage Using MIP From line 217
+B 2883 Solution Report     SOLVE energy_storage Using MIP From line 217
+F 2916 e1
+F 2969 e1a
+F 3022 e2
+F 3075 e3
+F 3128 e4
+F 3181 e4a
+F 3234 e5
+F 3287 e6
+F 3340 e7
+F 3393 e9
+F 3446 e10
+F 3499 e11
+F 3552 e13
+F 3607 e14
+G 3609 E_stored
+G 3663 E_pur
+G 3716 E_sold
+G 3769 E_dischar
+G 3822 E_charge
+G 3875 E_aval
+G 3928 E_loss
+G 3981 rev
+G 4034 cost
+G 4087 Cost_pur
+G 4142 Profit
+G 4144 z_charge
+G 4197 z_dischar
+B 4256 E x e c u t i o n
+I 4256 T_profit
+B 4265 Range Statistics    SOLVE energy_storage Using MIP From line 217
+B 4276 Model Statistics    SOLVE energy_storage Using MIP From line 217
+B 4294 Solution Report     SOLVE energy_storage Using MIP From line 217
+F 4326 e1
+F 4379 e1a
+F 4432 e2
+F 4485 e3
+F 4538 e4
+F 4591 e4a
+F 4644 e5
+F 4697 e6
+F 4750 e7
+F 4803 e9
+F 4856 e10
+F 4909 e11
+F 4962 e13
+F 5017 e14
+G 5019 E_stored
+G 5073 E_pur
+G 5126 E_sold
+G 5179 E_dischar
+G 5232 E_charge
+G 5285 E_aval
+G 5338 E_loss
+G 5391 rev
+G 5444 cost
+G 5497 Cost_pur
+G 5552 Profit
+G 5554 z_charge
+G 5607 z_dischar
+B 5666 E x e c u t i o n
+I 5666 T_profit
+B 5675 Range Statistics    SOLVE energy_storage Using MIP From line 217
+B 5686 Model Statistics    SOLVE energy_storage Using MIP From line 217
+B 5704 Solution Report     SOLVE energy_storage Using MIP From line 217
+F 5736 e1
+F 5765 e1a
+F 5794 e2
+F 5823 e3
+F 5852 e4
+F 5881 e4a
+F 5910 e5
+F 5939 e6
+F 5968 e7
+F 5997 e9
+F 6026 e10
+F 6055 e11
+F 6084 e13
+F 6115 e14
+G 6117 E_stored
+G 6147 E_pur
+G 6176 E_sold
+G 6205 E_dischar
+G 6234 E_charge
+G 6263 E_aval
+G 6292 E_loss
+G 6321 rev
+G 6350 cost
+G 6379 Cost_pur
+G 6410 Profit
+G 6412 z_charge
+G 6441 z_dischar
+B 6476 E x e c u t i o n
+I 6476 T_profit
+I 6484 Net_Revenue

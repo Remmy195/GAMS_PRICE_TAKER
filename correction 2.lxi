@@ -1,0 +1,64 @@
+B 3 Energy Storage Price-Taker Optimization Tool
+B 88 Symbol Listing
+B 199 Include File Summary
+B 211 E x e c u t i o n
+I 211 price
+B 220 Equation Listing    SOLVE energy_storage Using MIP From line 206
+D 223 e1
+D 234 e1a
+D 245 e2
+D 256 e3
+D 267 e4
+D 278 e4a
+D 289 e5
+D 300 e6
+D 311 e7
+D 322 e9
+D 333 e10
+D 344 e11
+D 355 e13
+D 366 e14
+B 372 Column Listing      SOLVE energy_storage Using MIP From line 206
+E 375 E_stored
+E 397 E_pur
+E 416 E_sold
+E 435 E_dischar
+E 457 E_charge
+E 479 E_aval
+E 501 E_loss
+E 520 rev
+E 539 cost
+E 558 Cost_pur
+E 577 Profit
+E 584 z_charge
+E 603 z_dischar
+B 623 Range Statistics    SOLVE energy_storage Using MIP From line 206
+B 634 Model Statistics    SOLVE energy_storage Using MIP From line 206
+B 647 Solution Report     SOLVE energy_storage Using MIP From line 206
+F 697 e1
+F 822 e1a
+F 947 e2
+F 1072 e3
+F 1197 e4
+F 1322 e4a
+F 1447 e5
+F 1572 e6
+F 1697 e7
+F 1822 e9
+F 1947 e10
+F 2072 e11
+F 2197 e13
+F 2324 e14
+G 2326 E_stored
+G 2451 E_pur
+G 2576 E_sold
+G 2701 E_dischar
+G 2826 E_charge
+G 2951 E_aval
+G 3076 E_loss
+G 3201 rev
+G 3326 cost
+G 3451 Cost_pur
+G 3578 Profit
+G 3580 z_charge
+G 3705 z_dischar

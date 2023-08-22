@@ -1,0 +1,268 @@
+GAMS 42.2.0  ef14ea53 Feb 16, 2023          WEX-WEI x86 64bit/MS Windows - 06/22/23 15:23:29 Page 1
+Multi-stage Stochastic Water Reservoir Model solved with SDDP
+C o m p i l a t i o n
+
+
+   3   
+   4  Sets w          Weeks                              / w1*w52   /
+   5       t          Hours of the year                  / t1*t8736 /
+   6       ft         Types of fuel available (plants)   / Hydro, HardCoal, Nuclear /
+   7   
+   8  Parameters
+   9       demand(t)       Power demand MW
+  10       exchange(t)     Cross border flow MW
+  11       wCapacity(w,ft) Capacity of plant MW
+  12       wPrices(w,*)    Coal and CO2 price EUR per ton
+  13       wInflow(w)      Inflows into the reservoir MWh per week
+  14       resmax(t)       Max reservoir level MW / t1*t8735 106.2e6, t8736 87e6 /
+  15       resmin(t)       Min reservoir level MW / t1*t8735    10e6, t8736 87e6 /;
+  16   
+  25   
+  30   
+GDXIN   C:\Users\Remi\OneDrive - UCB-O365\Documents\lecture notes\MSc\Thesis\GAMS\water.gdx
+--- LOAD  demand = 1:demand
+--- LOAD  exchange = 2:exchange
+--- LOAD  wCapacity = 3:wCapacity
+--- LOAD  wPrices = 4:wPrices
+--- LOAD  wInflow = 5:wInflow
+  33   
+  34  * Week hour mapping
+  35  Set  h               Hours of one week / h1*h168 /
+  36       wt(w,t)         Map weeks and hours
+  37       last(w,t)       Last hour t of each week w
+  38       first(w,t)      First hour t of each week w;
+  39   
+  40  loop(w,
+  41    loop((h,t)$sameas('t1',t), wt(w,t+((ord(w)-1)*card(h)+ord(h)-1)) = yes);
+  42    loop(t$sameas('t1',t),
+  43      first(w,t+((ord(w)-1)*card(h))) = yes;
+  44      last(w,t+(ord(w)*card(h)-1)) = yes));
+  45   
+  46  Parameter
+  47       capacity(t,ft)  Capacity of plant MW
+  48       gencost(t,ft)   Generating cost EUR per MW / #t.Hydro 0, #t.Nuclear 15 /
+  49       inflow(t)       Inflows into the reservoir MW;
+  50   
+  51  inflow(t)             = sum(wt(w,t), wInflow(w)/card(h));
+  52  capacity(t,ft)        = sum(wt(w,t), wCapacity(w,ft));
+  53  gencost(t,'HardCoal') = sum(wt(w,t), (wPrices(w,'HardCoal') + 2.361*wPrices(w,'CO2')))/(6.98*0.39);
+  54   
+  55  Set  tt(t)         Control set for hours
+  56       ww(w)         Control set for weeks;
+  57   
+  58  Positive Variables
+  59       GAP(t)         Gap generation in hour t MW
+  60       RES(t)         Reservoir energy (level) at end of t MW
+  61       SPILL(t)       Spillage in hour t MW
+  62       X(t,ft)        Generated power in hour t by plant with fuel type MW
+  63       SLACKUP(t)     Slack variable for the upper reservoir level equation MW
+  64       SLACKLO(t)     Slack variable for the lower reservoir level equation MW;
+  65  Variable
+  66       COST           Total generation cost EUR;
+  67   
+  68  Equations
+  69       Cont(t)        Hydraulic continuity equation
+  70       DemSat(t)      Demand satisfaction
+  71       ResUp(t)       Maximum reservoir level
+  72       ResLo(t)       Minimum reservoir level
+  73       PlantCap(t,ft) Plant power generation capacity
+  74       Obj            Objective Function;
+  75   
+  76  Cont(tt(t))..
+  77       RES(t) - RES(t--1) + X(t,'Hydro') + SPILL(t) =e= inflow(t);
+  78   
+  79  DemSat(tt(t))..
+  80       sum(ft$capacity(t,ft), X(t,ft)) + GAP(t) =g= demand(t) - exchange(t);
+  81   
+  82  ResUp(tt(t))..
+  83       -RES(t) + SLACKUP(t) =g= -resmax(t);
+  84   
+  85  ResLo(tt(t))..
+  86       RES(t) + SLACKLO(t) =g= resmin(t);
+  87   
+  88  PlantCap(tt(t),ft)$capacity(t,ft)..
+  89       -X(t,ft) =g= -capacity(t,ft);
+  90   
+  91  Obj.. COST =e=  sum((tt(t),ft)$capacity(t,ft), gencost(t,ft)*X(t,ft))
+  92                + sum(tt(t), 1000*GAP(t) + 10e6*(SLACKUP(t) + SLACKLO(t)));
+  93   
+  94  Model water / all /;
+  95   
+  96  * Deterministic model
+  97  tt(t)=yes;
+  99   
+GAMS 42.2.0  ef14ea53 Feb 16, 2023          WEX-WEI x86 64bit/MS Windows - 06/22/23 15:23:29 Page 2
+SDDP Algorithm
+C o m p i l a t i o n
+
+
+ 101   
+ 102  * Scenario data
+ 103  Set  s Scenarios     / s1*s12 /;
+ 104  Parameter
+ 105       sw_Inflow(w,s)  Inflow realizations MWh per week;
+--- LOAD  sw_Inflow = 6:sw_Inflow
+ 107   
+ 110  Sets i            Trial solutions / i1*i5 /
+ 111       j            Iteration index / j1*j100 /
+ 112       jj(j)        Dynamic j;
+ 113   
+ 114  Parameters
+ 115       cont_m(j,i,w)  Dual variables associated with the mass balance constraint
+ 116       delta(j,i,w)   RHS of the Benders cuts;
+ 117   
+ 118  cont_m(j,i,w) = 0;
+ 119  delta(j,i,w)  = 0;
+ 120  jj(j)         = no;
+ 121   
+ 122  Free Variables
+ 123       ACOST         Approximation of cost
+ 124  Positive Variable
+ 125       ALPHA(t)      Approximation of future cost function (FCF);
+ 126   
+ 127  Equations
+ 128       Obj_Approx    Objective function for the one-stage dispatch model
+ 129       Cuts(j,i,w,t) Benders cuts;
+ 130   
+ 131  Obj_Approx..
+ 132       ACOST =e=  sum((tt(t),ft)$capacity(t,ft), gencost(t,ft)*X(t,ft))
+ 133                + sum(tt(t), 1000*GAP(t) + 10e6*(SLACKUP(t) + SLACKLO(t)))
+ 134                + sum(last(ww,tt(t)), ALPHA(t+1));
+ 135   
+ 136  Cuts(jj,i,last(ww(w),t))$(ord(w)<card(w))..
+ 137       ALPHA(t+1) - cont_m(jj,i,w+1)*RES(t) =g= delta(jj,i,w);
+ 138   
+ 139  model waterSDDP / water, obj_approx, cuts /;
+ 140   
+ 141  * No superflous output and in core solving
+ 142  option limrow=0, limcol=0, solprint=silent, solvelink=5;
+ 143   
+ 144  Parameters
+ 145       i_res(i,t)     Trial decisions
+ 146  Set
+ 147       jwis(j,w,i,s)  Scenario trial sample;
+ 148   
+ 149  *  Select some for the first backward recursion;
+ 150  loop(i,
+ 151    i_res(i,t) = resmin(t) + (ord(i)-1)/(card(i)-1)*(resmax(t)-resmin(t)));
+ 152  loop(s$sameas('s1',s),
+ 153     jwis(j,w,i,s+UniFormInt(0,card(s)-1))$(not sameas('w1',w)) = yes);
+ 154  * The Concert implementation needs the following file
+ 155  * so sampling in GAMS and Concert is the same
+ 156  execute_unload 'jwis.gdx', jwis;
+ 157   
+ 158   
+ 159  * We need to iterate w from back to front
+ 160  Set revt(w,w) Backward loop for backward recursion excluding week 1;
+ 161  loop(w$(ord(w)<card(w)), revt(w,w+(card(w)-2*ord(w)+1)) = yes);
+ 162   
+ 164  Parameter
+ 165       done             Indicator for convergence /0/
+ 166       conv(j,*)        Convergence parameters
+ 167       zt(j,i)          Objective for trial solution
+ 169  ;
+ 170   
+ 181   
+ 182  Alias (w,wp,wloop),(i,il);
+ 183   
+ 185  Scalar start; start=jnow;
+ 186  option solveopt=clear;
+ 187  loop(j$(not done and (jnow-start)*24<2), // main iteration
+ 188    loop(revt(wp,wloop), // Backward recursion
+ 189      tt(t) = no; tt(t)$wt(wloop,t) = yes;
+ 190      ww(w) = no; ww(wloop)         = yes;
+ 191      loop(il, // trial loop
+ 192        RES.fx(t)$last(wloop-1,t) = i_res(il,t);
+ 193        loop(s, // for all realizations
+ 194          inflow(t)$wt(wloop,t) = sw_Inflow(wloop,s)/card(h);
+ 195          Solve waterSDDP min ACOST using LP;
+ 196          abort$(waterSDDP.modelstat<>1) 'Solve not optimal';
+ 197          //calculate cut using marginals of the first hour of the current week
+ 198          cont_m(j,il,wloop) = sum(first(wloop,t), Cont.m(t))/card(s) + cont_m(j,il,wloop);
+ 199          //use all hours of wloop for the delta calculation
+ 200          delta(j,il,wloop-1)  = [sum{wt(wloop,t),
+ 201                            Cont.m(t)*inflow(t)
+ 202                          + sum(ft$capacity(t,ft), PlantCap.m(t,ft)*(-capacity(t,ft)))
+ 203                          + ResUp.m(t)*(-resmax(t)) + ResLo.m(t)*resmin(t)
+ 204                          + DemSat.m(t)*(demand(t) - exchange(t))}
+ 205                          + sum((jj,i,t)$last(wloop,t),
+ 206                              cuts.m(jj,i,wloop,t)*delta(jj,i,wloop))$(ord(wloop)<card(w))]/card(s)
+ 207                          + delta(j,il,wloop-1);
+ 208        ); // end of realization loop
+ 209      ); // end of trial solution loop
+ 210      jj(j) = yes; // we want the cuts from the stage w+1
+ 211      RES.lo(t)$last(wloop-1,t)=0; RES.up(t)$last(wloop-1,t)=inf; // free out fixings
+ 212    ); //end of backward recursion
+ 213   
+ 214    loop(wloop, // Forward simulation
+ 215      tt(t) = no; tt(t)$wt(wloop,t) = yes;
+ 216      ww(w) = no; ww(wloop)         = yes;
+ 217      if (sameas('w1',wloop),
+ 218        RES.fx(t)$last(wloop--1,t) = resmin(t);
+ 219        //we are using the original inflow first stage, not one of the 12 scenarios
+ 220        Solve waterSDDP min ACOST using LP;
+ 221        abort$(waterSDDP.modelstat<>1) 'Solve not optimal';
+BATINCLUDE C:\Users\Remi\OneDrive - UCB-O365\Documents\lecture notes\MSc\Thesis\GAMS\storeSol.gms
+ 224        conv(j,'lo') = ACOST.l;   //store the first stage cost as the lower bound
+ 225        zt(j,i)      = ACOST.l - sum(last(ww,tt(t)), ALPHA.l(t+1));
+ 226        i_res(i,tt)$last(wloop,tt) = RES.l(tt);
+ 227        RES.lo(t)$last(wloop--1,t)=0; RES.up(t)$last(wloop--1,t)=inf; // free out fixings
+ 228      else
+ 229        loop(jwis(j,wloop,il,s),
+ 230          Inflow(t)$wt(wloop,t) = sw_Inflow(wloop,s)/card(h);
+ 231          //fix the reservoir levels of the previous stage when going forward
+ 232          RES.fx(t)$last(wloop-1,t) = i_res(il,t);
+ 233          Solve waterSDDP min ACOST using LP;
+ 234          abort$(waterSDDP.modelstat<>1) 'Solve not optimal';
+BATINCLUDE C:\Users\Remi\OneDrive - UCB-O365\Documents\lecture notes\MSc\Thesis\GAMS\storeSol.gms
+ 237          i_res(il,tt)$last(wloop,tt) = RES.l(tt);
+ 238          zt(j,il) = zt(j,il) + ACOST.l - sum(last(ww,tt(t)), ALPHA.l(t+1));
+ 239        ); //end of trial loop
+ 240      ); // end of if
+ 241    ); // end for forward simulation
+ 242    conv(j,'up') = sum(i, zt(j,i))/card(i);
+ 243   
+      * Check convergence (original Pereira and Pinto (1991) criterion)
+        conv(j,'sigma') = sqrt[sum(n, sqr(conv(j,'up') - zt(j,n)))/sqr(card(n))];
+        if (conv(j,'lo') > (conv(j,'up')-conv(j,'sigma')) and
+            conv(j,'lo') < (conv(j,'up')+conv(j,'sigma')),
+          done = 1);
+ 251   
+ 252  * Convergence criterion of SDDP presented by Shapiro (2009) - remark1
+ 253    conv(j,'sigma') = sqrt[sum(i, sqr(conv(j,'up') - zt(j,i)))/(card(i)-1)];
+ 254    if (abs[conv(j,'lo')-(conv(j,'up')+1.96*conv(j,'sigma')/sqrt(card(i)))] < 0.01*abs(conv(j,'lo')),
+ 255      done = 1);
+ 256    conv(j,'time [min]')=(jnow-start)*24*60;
+ 257  );
+GAMS 42.2.0  ef14ea53 Feb 16, 2023          WEX-WEI x86 64bit/MS Windows - 06/22/23 15:23:29 Page 3
+SDDP Algorithm
+Include File Summary
+
+
+   SEQ   GLOBAL TYPE      PARENT   LOCAL  FILENAME
+
+     1        1 INPUT          0       0  C:\Users\Remi\OneDrive - UCB-O365\Documents\lecture notes\MSc\Thesis\GAMS\SDP Example.gms
+     2       28 CALL           1      28  gdxxrw.exe water.xlsx o=water.gdx @gdxxrw.txt
+     3       31 GDXIN          1      31  C:\Users\Remi\OneDrive - UCB-O365\Documents\lecture notes\MSc\Thesis\GAMS\water.gdx
+     4      222 BATINCLUDE     1     222  .C:\Users\Remi\OneDrive - UCB-O365\Documents\lecture notes\MSc\Thesis\GAMS\storeSol.gms
+     5      235 BATINCLUDE     1     234  .C:\Users\Remi\OneDrive - UCB-O365\Documents\lecture notes\MSc\Thesis\GAMS\storeSol.gms
+
+
+COMPILATION TIME     =        2.563 SECONDS      6 MB  42.2.0 ef14ea53 WEX-WEI
+GAMS 42.2.0  ef14ea53 Feb 16, 2023          WEX-WEI x86 64bit/MS Windows - 06/22/23 15:23:29 Page 4
+SDDP Algorithm
+E x e c u t i o n
+
+
+EXECUTION TIME       =     2912.859 SECONDS     17 MB  42.2.0 ef14ea53 WEX-WEI
+
+
+USER: GAMS Community License for Remi Akinwonmi      G230220|0002AO-GEN
+      University of Colorado at Boulder, Dept. of Mechanical EngiCL5252
+      License for teaching and research at degree granting institutions
+
+
+**** FILE SUMMARY
+
+Input      C:\Users\Remi\OneDrive - UCB-O365\Documents\lecture notes\MSc\Thesis\GAMS\SDP Example.gms
+Output     C:\Users\Remi\OneDrive - UCB-O365\Documents\lecture notes\MSc\Thesis\GAMS\SDP Example.lst

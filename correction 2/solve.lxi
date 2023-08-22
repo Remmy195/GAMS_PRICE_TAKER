@@ -1,0 +1,44 @@
+B 3 C o m p i l a t i o n
+B 11 E x e c u t i o n
+I 11 price
+B 160 Range Statistics    SOLVE energy_storage Using MIP From line 806
+B 171 Model Statistics    SOLVE energy_storage Using MIP From line 806
+B 184 Solution Report     SOLVE energy_storage Using MIP From line 806
+F 221 e1
+F 946 e1a
+F 1671 e2
+F 2396 e3
+F 3121 e4
+F 3846 e4a
+F 4571 e5
+F 5296 e6
+F 6021 e7
+F 6746 e9
+F 7471 e10
+F 8196 e11
+F 8921 e13
+F 9648 e14
+G 9650 E_stored
+G 10375 E_pur
+G 11100 E_sold
+G 11825 E_dischar
+G 12550 E_charge
+G 13275 E_aval
+G 14000 E_loss
+G 14725 rev
+G 15450 cost
+G 16175 Cost_pur
+G 16902 Profit
+G 16904 z_charge
+G 17629 z_dischar
+B 18360 E x e c u t i o n
+I 18360 E_stored
+I 18507 E_pur
+I 18655 E_sold
+I 18803 E_charge
+I 18818 E_dischar
+I 18834 z_charge
+I 18958 z_dischar
+I 19082 rev
+I 19266 cost
+I 19451 Profit
